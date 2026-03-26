@@ -1,10 +1,32 @@
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : BaseCounter
 {
+    [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    public void Interact()
+    public override void Interact(Player player)
     {
-        Debug.Log("Interact");
+        if (!HasKitchenObject())
+        {
+            if (player.HasKitchenObject())
+            {
+                player.GetKitchenObject().SetKitchenObjectParent(this);
+            }
+            else
+            {
+                
+            }
+        }
+        else
+        {
+            if (player.HasKitchenObject())
+            {
+                
+            }
+            else
+            {
+                GetKitchenObject().SetKitchenObjectParent(player);
+            }
+        }
     }
 }
